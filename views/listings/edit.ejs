@@ -1,0 +1,111 @@
+
+<% layout("./layouts/biolerplate") %>
+
+<div class="row" mt-3>
+
+    <div class="col-8 offset-2">
+
+        <h3>Edit Your Listing:</h3>
+
+        <form method="POST" action="/listings/<%= listings._id %>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input
+                    type="text"
+                    name="listing[title]"
+                    value="<%= listings.title %>"
+                    class="form-control"
+                    required
+                >
+                <div class="invalid-feedback">Title cannot be empty</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                    name="listing[description]"
+                    class="form-control"
+                    required
+                ><%= listings.description %></textarea>
+                <div class="invalid-feedback">Description cannot be empty</div>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Category</label>
+                <input
+                    type="text"
+                    name="listing[category]"
+                    value="<%= listings.category %>"
+                    class="form-control"
+                    required
+                >
+                <div class="invalid-feedback">Title cannot be empty</div>
+            </div>
+
+            <div class="mb-3">
+                <img style="height: 200px; width: 300px;" src="<%= listings.image.url %>" alt="">
+                
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload New Image</label>
+                <input
+                    type="file"
+                    name="listing[image][url]"
+                    
+                    class="form-control"
+                    
+                >
+                
+            </div>
+
+            <div class="row">
+
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input
+                        type="number"
+                        name="listing[price]"
+                        value="<%= listings.price %>"
+                        class="form-control"
+                        required
+                    >
+                    <div class="invalid-feedback">price cannot be empty</div>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input
+                        type="text"
+                        name="listing[country]"
+                        value="<%= listings.country %>"
+                        class="form-control"
+                        required
+                    >
+                    <div class="invalid-feedback">Country cannot be empty</div>
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input
+                    type="text"
+                    name="listing[location]"
+                    value="<%= listings.location %>"
+                    class="form-control"
+                    required
+                >
+                <div class="invalid-feedback">Location cannot be empty</div>
+            </div>
+
+            <button class="btn btn-dark add-btn">Edit</button>
+
+            <br><br>
+
+        </form>
+
+    </div>
+
+</div>
+

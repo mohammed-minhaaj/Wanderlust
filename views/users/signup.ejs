@@ -1,0 +1,33 @@
+<% layout("/layouts/biolerplate.ejs") %>
+
+<div class="row mt-3">
+    <div class="col-6 offset-3">
+        <h3>Sign up on Wanderlust</h3>
+        <br>
+        <form action="/signup" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" placeholder="enter username" class="form-control" required>
+            <div class="valid-feedback">good choice!</div>
+            <div class="invalid-feedback">this field can't be empty</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" placeholder="enter email" class="form-control" required>
+            <div class="valid-feedback">good choice!</div>
+            <div class="invalid-feedback">this field can't be empty</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" placeholder="enter password" class="form-control" required>
+            <div class="valid-feedback">good choice!</div>
+            <div class="invalid-feedback">this field can't be empty</div>
+        </div>
+
+        <button class="btn btn-success">SignUp</button>
+        </form>
+
+    </div>
+</div>

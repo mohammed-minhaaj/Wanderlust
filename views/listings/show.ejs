@@ -1,0 +1,144 @@
+
+<% layout("./layouts/biolerplate") %>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="fw-bold mb-4"><%= listings.title %></h2>
+            <div class="card listing-card shadow-sm border-0">
+                <img src="<%= listings.image.url %>" class="listing-img" alt="<%= listings.title %>">
+                <div class="card-body p-4">
+                    owned by <b><i><%= listings.owner.username %></i></b>
+
+                    <p class="text-muted mb-3">
+                        <%= listings.description %>
+                    </p>
+                    <div class="listing-info">
+                        <h4 class="text-danger fw-bold mb-3">
+                            ₹ <%= listings.price.toLocaleString("en-IN") %>
+                        </h4>
+                        <p class="mb-1">
+                            <strong>Location:</strong>
+                            <%= listings.location %>
+                        </p>
+                        <p class="mb-0">
+                            <strong>Country:</strong>
+                            <%= listings.country %>
+                        </p>
+                        <p class="mb-0">
+                            <strong>Category:</strong>
+                            <%= listings.category %>
+                        </p>
+                    </div>
+                    <% if (currUser && listings.owner._id.equals(currUser._id)) { %>
+                     <div class="d-flex gap-3 mt-4">
+                        <a href="/listings/<%= listings.id %>/edit" class="btn edit-btn">
+                            Edit
+                        </a>
+                        <form action="/listings/<%= listings.id %>?_method=DELETE" method="POST">
+                            <button class="btn delete-btn btn-dark">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                    <% } %>
+                   
+                     
+                    
+
+                    
+                    <hr>
+                    <div>
+                        <% if (currUser) { %>
+
+
+                         <h4>Leave a review</h4>
+                        <form action="/listings/<%= listings._id %>/reviews" method="post" novalidate class="needs-validation">
+                            <div class="mb-3 mt-3">
+                                <label for="rating" class="form-label">Rating</label>
+                            <fieldset class="starability-slot">
+                                
+                                
+                                <input type="radio" id="rating" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                                
+                            </div>
+                            
+
+                            <div class="mb-3 mt-3">
+                                <label for="comment" class="form-label">Comment</label>
+                                <textarea name="review[comment]" id="comment" class="form-control" required></textarea>
+                                <div class="invalid-feedback">
+                                    please add some comments for review
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-dark">Submit</button>
+                        </form>
+                        <hr>
+
+                        <% } %>
+                        
+
+                        
+                        <% if (listings.reviews.length >0) { %>
+                         
+                        
+                        <p><b>All reviews</b></p>
+                        <div class="reviews-container">
+                            <% for (let review of listings.reviews) { %>
+                                <div class="card review-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title reviewer-name">
+                                            @<%=review.author.username%>
+                                        </h5>
+                                        
+                                        <div class="review-rating">
+                                            <%= review.rating %> ★
+                                        </div>
+                                        
+                                        
+                                        <p class="card-text review-comment">
+                                            <%= review.comment %>
+                                        </p>
+                                        
+                                    </div>
+                                    <form action="/listings/<%= listings._id %>/reviews/<%= review._id %>?_method=DELETE" class="mt-4" method="post">
+                                        <button class="btn btn-dark btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                            <% } %>
+                        </div>
+                        <hr class="my-5">
+                        <% } %>
+
+                        
+
+<h4 class="mb-3">Where you'll be</h4>
+
+<div id="map" style="height: 400px; width: 100%; border-radius: 15px;"></div>
+<script>
+    const listingLocation = "<%= listings.location %>, <%= listings.country %>";
+</script>
+
+<script src="/js/map.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=<%= googleMapsApiKey %>&callback=initMap"
+    async
+    defer>
+</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
