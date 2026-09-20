@@ -1,0 +1,420 @@
+/* ==========================================================
+   DARK MODE
+   Loaded last so it can override style.css, rating.css and
+   Bootstrap without needing extra !important everywhere.
+   The .dark-mode class is applied to <html> and <body>.
+   ========================================================== */
+
+.dark-mode {
+    --wl-bg: #121212;
+    --wl-surface: #1c1c1c;
+    --wl-surface-2: #242424;
+    --wl-border: #3a3a3a;
+    --wl-text: #f1f1f1;
+    --wl-text-muted: #b5b5b5;
+    --wl-brand: #fe424d;
+}
+
+/* smooth switch */
+body,
+.navbar,
+.card,
+.f-info,
+#filters,
+.tax-toggle,
+.review-card {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body,
+    .navbar,
+    .card,
+    .f-info,
+    #filters,
+    .tax-toggle,
+    .review-card {
+        transition: none;
+    }
+}
+
+/* ---------- base ---------- */
+.dark-mode,
+.dark-mode body {
+    background-color: var(--wl-bg);
+    color: var(--wl-text);
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode p,
+.dark-mode b,
+.dark-mode strong,
+.dark-mode i,
+.dark-mode label,
+.dark-mode span,
+.dark-mode small {
+    color: inherit;
+}
+
+.dark-mode hr {
+    border-color: var(--wl-border);
+    opacity: 1;
+}
+
+.dark-mode .text-muted {
+    color: var(--wl-text-muted) !important;
+}
+
+.dark-mode .text-dark {
+    color: var(--wl-text) !important;
+}
+
+.dark-mode .bg-white,
+.dark-mode .bg-light,
+.dark-mode .bg-body,
+.dark-mode .bg-body-light,
+.dark-mode .bg-body-tertiary {
+    background-color: var(--wl-surface) !important;
+    color: var(--wl-text) !important;
+}
+
+.dark-mode ::selection {
+    background: var(--wl-brand);
+    color: #ffffff;
+}
+
+/* ---------- navbar ---------- */
+.dark-mode .navbar {
+    background-color: #1a1a1a !important;
+    border-bottom-color: var(--wl-border) !important;
+}
+
+.dark-mode .nav-link {
+    color: var(--wl-text) !important;
+}
+
+.dark-mode .nav-link:hover,
+.dark-mode .nav-link:focus {
+    color: #ffffff !important;
+}
+
+.dark-mode .navbar-brand .fa-earth-americas,
+.dark-mode .fa-earth-americas {
+    color: var(--wl-brand);
+}
+
+.dark-mode .navbar-toggler {
+    border-color: var(--wl-border);
+}
+
+/* Bootstrap's toggler icon is a dark SVG - flip it so it stays visible */
+.dark-mode .navbar-toggler-icon {
+    filter: invert(1) grayscale(100%) brightness(2);
+}
+
+/* search box in the navbar */
+.dark-mode .search-input {
+    background-color: var(--wl-surface-2);
+    color: var(--wl-text);
+    border-color: var(--wl-border);
+}
+
+.dark-mode .search-input::placeholder {
+    color: var(--wl-text-muted);
+    opacity: 1;
+}
+
+.dark-mode .search-input:focus {
+    background-color: var(--wl-surface-2);
+    color: var(--wl-text);
+    border-color: var(--wl-brand);
+    box-shadow: 0 0 0 0.2rem rgba(254, 66, 77, 0.25);
+}
+
+/* keep the red search button - it already has white text */
+.dark-mode .btn-search,
+.dark-mode .btn-search:hover,
+.dark-mode .btn-search i {
+    background-color: var(--wl-brand);
+    color: #ffffff;
+}
+
+/* the toggle button itself */
+.dark-mode #dark-mode-toggle {
+    color: var(--wl-text);
+    border-color: var(--wl-border);
+}
+
+.dark-mode #dark-mode-toggle:hover {
+    background-color: var(--wl-surface-2);
+    color: #ffffff;
+    border-color: var(--wl-text-muted);
+}
+
+#dark-mode-toggle i {
+    pointer-events: none;
+}
+
+/* ---------- category filter bar (index.ejs) ---------- */
+.dark-mode #filters {
+    border-color: var(--wl-border);
+    background-color: var(--wl-bg);
+}
+
+.dark-mode .filter,
+.dark-mode .filter p,
+.dark-mode .filter i {
+    color: var(--wl-text);
+}
+
+.dark-mode .filter {
+    opacity: 0.75;
+}
+
+.dark-mode .filter:hover {
+    opacity: 1;
+}
+
+.dark-mode #filters::-webkit-scrollbar-thumb {
+    background: var(--wl-border);
+}
+
+.dark-mode .tax-toggle {
+    border-color: var(--wl-border);
+    color: var(--wl-text);
+}
+
+.dark-mode .form-check-label {
+    color: var(--wl-text);
+}
+
+/* ---------- listing cards ---------- */
+.dark-mode .card {
+    background-color: var(--wl-surface);
+    color: var(--wl-text);
+}
+
+.dark-mode .card-body,
+.dark-mode .card-text,
+.dark-mode .card-title {
+    color: var(--wl-text);
+}
+
+.dark-mode .listing-link,
+.dark-mode .listing-link .card-text {
+    color: var(--wl-text);
+}
+
+.dark-mode .card-img-overlay:hover {
+    background-color: #000000;
+    opacity: 0.25;
+}
+
+.dark-mode .listing-card {
+    background-color: var(--wl-surface);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-mode .listing-info {
+    color: var(--wl-text);
+}
+
+/* price heading uses .text-danger - lighten it for contrast on dark */
+.dark-mode .text-danger {
+    color: #ff6b74 !important;
+}
+
+/* ---------- reviews ---------- */
+.dark-mode .review-card {
+    background-color: var(--wl-surface-2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.55);
+}
+
+.dark-mode .review-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .reviewer-name {
+    color: var(--wl-text);
+}
+
+.dark-mode .review-comment {
+    color: var(--wl-text-muted);
+}
+
+.dark-mode .review-rating {
+    background-color: #4a3b12;
+    color: #ffd85c;
+}
+
+/* ---------- forms (new / edit / login / signup / review) ---------- */
+.dark-mode .form-label {
+    color: var(--wl-text);
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select,
+.dark-mode textarea.form-control {
+    background-color: var(--wl-surface-2);
+    color: var(--wl-text);
+    border-color: var(--wl-border);
+}
+
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+    background-color: var(--wl-surface-2);
+    color: var(--wl-text);
+    border-color: var(--wl-brand);
+    box-shadow: 0 0 0 0.2rem rgba(254, 66, 77, 0.25);
+}
+
+.dark-mode .form-control::placeholder {
+    color: var(--wl-text-muted);
+    opacity: 1;
+}
+
+.dark-mode .form-select option {
+    background-color: var(--wl-surface-2);
+    color: var(--wl-text);
+}
+
+/* file input "Choose file" button */
+.dark-mode .form-control[type="file"]::file-selector-button {
+    background-color: var(--wl-border);
+    color: var(--wl-text);
+    border-color: var(--wl-border);
+}
+
+.dark-mode .form-control[type="file"]::file-selector-button:hover {
+    background-color: #4a4a4a;
+    color: #ffffff;
+}
+
+.dark-mode .valid-feedback {
+    color: #6fdc8c;
+}
+
+.dark-mode .invalid-feedback {
+    color: #ff8a8a;
+}
+
+.dark-mode .form-check-input {
+    background-color: var(--wl-surface-2);
+    border-color: var(--wl-border);
+}
+
+.dark-mode .form-check-input:checked {
+    background-color: var(--wl-brand);
+    border-color: var(--wl-brand);
+}
+
+/* ---------- buttons ---------- */
+.dark-mode .btn-outline-dark {
+    color: var(--wl-text);
+    border-color: var(--wl-text-muted);
+}
+
+.dark-mode .btn-outline-dark:hover {
+    background-color: var(--wl-text);
+    color: #121212;
+    border-color: var(--wl-text);
+}
+
+.dark-mode .btn-outline-secondary {
+    color: var(--wl-text);
+    border-color: var(--wl-border);
+}
+
+.dark-mode .btn-outline-secondary:hover {
+    background-color: var(--wl-surface-2);
+    color: #ffffff;
+}
+
+/* a dark button on a dark page is invisible - lift it */
+.dark-mode .btn-dark {
+    background-color: #3a3a3a;
+    border-color: #4f4f4f;
+    color: #ffffff;
+}
+
+.dark-mode .btn-dark:hover {
+    background-color: #4f4f4f;
+    border-color: #6a6a6a;
+    color: #ffffff;
+}
+
+/* .add-btn / .edit-btn are already red with white text - keep them */
+.dark-mode .add-btn,
+.dark-mode .edit-btn {
+    color: #ffffff !important;
+}
+
+.dark-mode .btn-success {
+    color: #ffffff;
+}
+
+/* ---------- flash messages & error page ---------- */
+.dark-mode .alert-success {
+    background-color: #17321f;
+    border-color: #2b5c39;
+    color: #b7f0c6;
+}
+
+.dark-mode .alert-danger {
+    background-color: #3a1a1d;
+    border-color: #6b2a30;
+    color: #ffb3b8;
+}
+
+.dark-mode .alert-heading {
+    color: inherit;
+}
+
+/* close button is a dark SVG - invert so it stays visible */
+.dark-mode .btn-close {
+    filter: invert(1) grayscale(100%) brightness(2);
+}
+
+/* ---------- footer ---------- */
+.dark-mode .f-info {
+    background-color: #1a1a1a;
+    color: var(--wl-text);
+}
+
+.dark-mode .f-info-brand {
+    color: var(--wl-text);
+}
+
+.dark-mode .f-info-links a {
+    color: var(--wl-text);
+}
+
+.dark-mode .f-info-links a:hover {
+    color: #ffffff;
+}
+
+.dark-mode .f-info-socials i {
+    color: var(--wl-text);
+}
+
+/* ---------- map ---------- */
+.dark-mode #map {
+    border: 1px solid var(--wl-border);
+    filter: brightness(0.9);
+}
+
+/* ---------- star rating (rating.css) ---------- */
+/* star sprites are gold/grey on transparent, so they stay readable.
+   only the focus outline needs lifting against the dark background */
+.dark-mode .starability-slot > input:focus + label {
+    outline-color: var(--wl-text-muted);
+}
+
+.dark-mode .starability-slot .starability-focus-ring {
+    outline-color: var(--wl-text-muted);
+}

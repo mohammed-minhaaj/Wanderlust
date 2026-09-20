@@ -90,16 +90,20 @@ app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
 
-
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 app.all("/*splat",(req,res,next)=>{
     next(new expressError(404,"page not found!"));
 })
 
-app.use((err,req,res,next)=>{
-    let{statusCode=500,msg="something went wrong"}=err;
-    //res.status(statusCode).send(msg);
-    res.render("./listings/error.ejs",{msg});
-})
+app.use((err, req, res, next) => {
+    if (err.name === "CastError") {
+        err = new expressError(404, "page not found!");
+    }
+    let { statusCode = 500, msg = "something went wrong" } = err;
+    res.render("./listings/error.ejs", { msg, statusCode });
+});
 app.listen(8080,()=>{
     console.log("server is listening to port 8080");
 })

@@ -152,6 +152,26 @@ module.exports.categoryListing = async (req, res) => {
     res.render("listings/index.ejs", { allListings });
 };
 
+module.exports.searchListing = async (req,res) => {
+    let {search}=req.query;
+    //console.log(search);
+     let allListings;
+
+    if (search) {
+        allListings = await listing.find({ title:search });
+
+        if (allListings.length === 0) {
+            req.flash("error", "No such listing exists!!");
+            return res.redirect("/listings");
+        }
+    } else {
+        allListings = await listing.find({});
+    }
+
+    res.render("listings/index.ejs", { allListings });
+
+}
+
 module.exports.destroyListing = async(req,res)=>{
     let{id}=req.params;
     let deletedList = await listing.findByIdAndDelete(id);

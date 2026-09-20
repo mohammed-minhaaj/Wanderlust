@@ -111,9 +111,12 @@
                                         </p>
                                         
                                     </div>
+                                    <% if (currUser && review.author._id.equals(currUser._id)) { %>
+
                                     <form action="/listings/<%= listings._id %>/reviews/<%= review._id %>?_method=DELETE" class="mt-4" method="post">
                                         <button class="btn btn-dark btn-sm">Delete</button>
                                     </form>
+                                    <% } %>
                                 </div>
                             <% } %>
                         </div>
